@@ -190,9 +190,15 @@ export function App() {
           padding={{ bottom: 75, left: 50, right: 50, top: 20 }}
           themeColor={ChartThemeColor.multiUnordered}
         >
-          {showAxes && <ChartAxis />}
-          {showAxes && <ChartAxis dependentAxis />}
-          {wrapChildren()}
+          {showAxes ? (
+            <>
+              <ChartAxis />
+              <ChartAxis dependentAxis />
+              {wrapChildren()}
+            </>
+          ) : (
+            wrapChildren()
+          )}
         </Chart>
       </div>
 
