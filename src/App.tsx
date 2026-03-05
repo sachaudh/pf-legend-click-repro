@@ -72,8 +72,9 @@ export function App() {
       <h1>getInteractiveLegendEvents + ChartBar bug</h1>
       <p>
         <code>onLegendClick</code> is never called when <code>ChartBar</code> is
-        used with <code>ChartAxis</code>. Replace <code>ChartBar</code> with{' '}
-        <code>ChartArea</code> and it works.
+        wrapped in <code>ChartStack</code> alongside <code>ChartAxis</code>.
+        Remove either the <code>ChartStack</code> or the <code>ChartAxis</code>{' '}
+        and it works. <code>ChartArea</code> in the same setup also works.
       </p>
 
       <div style={{ height: 350, width: 600 }}>
