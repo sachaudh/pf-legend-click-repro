@@ -31,6 +31,7 @@ const chartData = [
 ];
 
 export function App() {
+    const [showAxes, setShowAxes] = useState(true);
     const [hiddenSeries, setHiddenSeries] = useState(new Set<number>());
     const [clickLog, setClickLog] = useState<string[]>([]);
 
@@ -68,10 +69,24 @@ export function App() {
         <div style={{ padding: 24, fontFamily: 'sans-serif' }}>
             <h1>getInteractiveLegendEvents bug</h1>
             <p>
-                Click a legend item. With <code>ChartAxis</code> +{' '}
-                <code>ChartStack</code> together, <code>onLegendClick</code>{' '}
-                is never called. Remove the axes and it works.
+                Click a legend item below. When <code>ChartAxis</code> is
+                enabled with <code>ChartStack</code>,{' '}
+                <code>onLegendClick</code> is never called. Disable axes and
+                it works.
             </p>
+
+            <div style={{ marginBottom: 16 }}>
+                <button
+                    onClick={() => {
+                        setShowAxes((v) => !v);
+                        setHiddenSeries(new Set());
+                        setClickLog([]);
+                    }}
+                    style={{ padding: '8px 16px', fontSize: 14 }}
+                >
+                    ChartAxis: {showAxes ? 'ON (bug present)' : 'OFF (works)'}
+                </button>
+            </div>
 
             <div style={{ height: 350, width: 600 }}>
                 <Chart
@@ -84,13 +99,21 @@ export function App() {
                     width={600}
                     padding={{ bottom: 75, left: 50, right: 50, top: 20 }}
                 >
-                    {/* Remove these two ChartAxis lines and onLegendClick works */}
-                    <ChartAxis />
-                    <ChartAxis dependentAxis />
+                    {showAxes && <ChartAxis />}
+                    {showAxes && <ChartAxis dependentAxis />}
                     <ChartStack horizontal>
-                        <ChartBar name="Cats" data={chartData[0]} />
-                        <ChartBar name="Dogs" data={chartData[1]} />
-                        <ChartBar name="Birds" data={chartData[2]} />
+                        {seriesNames.map((name, i) => (
+                            <ChartBar
+                                key={name}
+                                name={name}
+                                data={
+                                    hiddenSeries.has(i)
+                                        ? chartData[i].map((d) => ({ ...d, y: 0 }))
+                                        : chartData[i]
+                                }
+                                barWidth={15}
+                            />
+                        ))}
                     </ChartStack>
                 </Chart>
             </div>
