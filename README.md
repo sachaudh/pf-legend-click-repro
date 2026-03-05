@@ -21,7 +21,7 @@ npm install
 npm run dev
 ```
 
-Click a legend item (Cats, Dogs, or Birds). The "Click log" section at the bottom will remain empty, confirming `onLegendClick` is never called.
+The app shows both bug cases side by side. Click a legend item (Cats, Dogs, or Birds) in either chart -- the click log will stay empty, confirming `onLegendClick` is never called.
 
 ## Workaround
 
