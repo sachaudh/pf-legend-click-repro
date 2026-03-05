@@ -23,6 +23,9 @@ npm run dev
 
 The app shows both bug cases side by side. Click a legend item (Cats, Dogs, or Birds) in either chart -- the click log will stay empty, confirming `onLegendClick` is never called.
 
+<img width="1171" height="665" alt="Screenshot 2026-03-05 at 3 47 44 PM" src="https://github.com/user-attachments/assets/4d3efc0a-efed-40e6-ba49-80807d47d3e3" />
+
+
 ## Workaround
 
 Apply click events directly to `ChartLegend`'s `events` prop instead of relying on Chart-level event dispatch:
