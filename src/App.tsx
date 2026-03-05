@@ -4,6 +4,7 @@ import {
   ChartBar,
   ChartLegend,
   ChartContainer,
+  ChartStack,
   ChartThemeColor,
   getInteractiveLegendEvents,
   getInteractiveLegendItemStyles
@@ -94,18 +95,20 @@ export function App() {
         >
           <ChartAxis />
           <ChartAxis dependentAxis />
-          {series.map((s, index) => (
-            <ChartBar
-              key={`bar-${index}`}
-              name={`bar-${index}`}
-              data={
-                isHidden(index)
-                  ? s.datapoints.map((d) => ({ ...d, y: 0 }))
-                  : s.datapoints
-              }
-              barWidth={15}
-            />
-          ))}
+          <ChartStack>
+            {series.map((s, index) => (
+              <ChartBar
+                key={`bar-${index}`}
+                name={`bar-${index}`}
+                data={
+                  isHidden(index)
+                    ? s.datapoints.map((d) => ({ ...d, y: 0 }))
+                    : s.datapoints
+                }
+                barWidth={15}
+              />
+            ))}
+          </ChartStack>
         </Chart>
       </div>
 
