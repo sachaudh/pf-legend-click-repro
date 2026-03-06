@@ -23,8 +23,7 @@ npm run dev
 
 The app shows five charts: two bug cases and three working cases. Click a legend item (Cats, Dogs, or Birds) in each chart -- the bug cases' click logs will stay empty, confirming `onLegendClick` is never called. The working cases toggle series visibility on click.
 
-<img width="1171" height="665" alt="Screenshot 2026-03-05 at 3 47 44 PM" src="https://github.com/user-attachments/assets/4d3efc0a-efed-40e6-ba49-80807d47d3e3" />
-
+https://github.com/user-attachments/assets/12ccaa96-3153-46d9-873b-3e85802d0b90
 
 ## Workaround
 
